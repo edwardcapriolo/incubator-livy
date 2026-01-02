@@ -1,57 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  ~ Licensed to the Apache Software Foundation (ASF) under one or more
-  ~ contributor license agreements.  See the NOTICE file distributed with
-  ~ this work for additional information regarding copyright ownership.
-  ~ The ASF licenses this file to You under the Apache License, Version 2.0
-  ~ (the "License"); you may not use this file except in compliance with
-  ~ the License.  You may obtain a copy of the License at
-  ~
-  ~    http://www.apache.org/licenses/LICENSE-2.0
-  ~
-  ~ Unless required by applicable law or agreed to in writing, software
-  ~ distributed under the License is distributed on an "AS IS" BASIS,
-  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  ~ See the License for the specific language governing permissions and
-  ~ limitations under the License.
--->
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>org.apache.livy</groupId>
+    <groupId>io.teknek.org.apache.livy</groupId>
     <artifactId>multi-scala-project-root</artifactId>
+    <version>0.9.0-edgyrc1</version>
     <relativePath>../scala/pom.xml</relativePath>
-    <version>0.10.0-incubating-SNAPSHOT</version>
   </parent>
-
   <artifactId>livy-repl-parent</artifactId>
-  <version>0.10.0-incubating-SNAPSHOT</version>
+  <version>0.9.0-edgyrc1</version>
   <packaging>pom</packaging>
-
+  <name>livy-repl-parent</name>
   <dependencies>
-
     <dependency>
-      <groupId>org.apache.livy</groupId>
+      <groupId>io.teknek.org.apache.livy</groupId>
       <artifactId>livy-rsc</artifactId>
       <version>${project.version}</version>
       <scope>provided</scope>
     </dependency>
-
     <dependency>
-      <groupId>org.apache.livy</groupId>
+      <groupId>io.teknek.org.apache.livy</groupId>
       <artifactId>livy-core_${scala.binary.version}</artifactId>
       <version>${project.version}</version>
       <exclusions>
-        <!-- Provided and shaded by livy-rsc already. -->
         <exclusion>
           <groupId>org.apache.livy</groupId>
           <artifactId>livy-client-common</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
-
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>livy-core_${scala.binary.version}</artifactId>
@@ -59,42 +37,35 @@
       <type>test-jar</type>
       <scope>test</scope>
     </dependency>
-
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-core</artifactId>
       <scope>provided</scope>
     </dependency>
-
     <dependency>
       <groupId>com.fasterxml.jackson.module</groupId>
       <artifactId>jackson-module-scala_${scala.binary.version}</artifactId>
       <scope>provided</scope>
     </dependency>
-
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
       <scope>provided</scope>
     </dependency>
-
     <dependency>
       <groupId>commons-codec</groupId>
       <artifactId>commons-codec</artifactId>
     </dependency>
-
     <dependency>
       <groupId>ch.qos.reload4j</groupId>
       <artifactId>reload4j</artifactId>
       <scope>provided</scope>
     </dependency>
-
     <dependency>
       <groupId>org.apache.spark</groupId>
       <artifactId>spark-repl_${scala.binary.version}</artifactId>
       <scope>provided</scope>
     </dependency>
-
     <dependency>
       <groupId>org.apache.spark</groupId>
       <artifactId>spark-core_${scala.binary.version}</artifactId>
@@ -111,70 +82,56 @@
         </exclusion>
       </exclusions>
     </dependency>
-
     <dependency>
       <groupId>org.apache.spark</groupId>
       <artifactId>spark-hive_${scala.binary.version}</artifactId>
       <scope>provided</scope>
     </dependency>
-
     <dependency>
       <groupId>org.json4s</groupId>
       <artifactId>json4s-ast_${scala.binary.version}</artifactId>
     </dependency>
-
     <dependency>
       <groupId>org.json4s</groupId>
       <artifactId>json4s-core_${scala.binary.version}</artifactId>
     </dependency>
-
     <dependency>
       <groupId>org.json4s</groupId>
       <artifactId>json4s-jackson_${scala.binary.version}</artifactId>
     </dependency>
-
     <dependency>
       <groupId>com.esotericsoftware</groupId>
       <artifactId>kryo-shaded</artifactId>
     </dependency>
-
     <dependency>
       <groupId>org.scala-lang</groupId>
       <artifactId>scala-compiler</artifactId>
       <scope>provided</scope>
     </dependency>
-
     <dependency>
       <groupId>org.scala-lang</groupId>
       <artifactId>scala-library</artifactId>
       <scope>provided</scope>
     </dependency>
-
     <dependency>
       <groupId>org.scala-lang</groupId>
       <artifactId>scala-reflect</artifactId>
       <scope>provided</scope>
     </dependency>
-
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-reload4j</artifactId>
       <scope>provided</scope>
     </dependency>
-
     <dependency>
       <groupId>net.sf.py4j</groupId>
       <artifactId>py4j</artifactId>
       <scope>provided</scope>
     </dependency>
-
   </dependencies>
-
   <build>
     <plugins>
-
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-shade-plugin</artifactId>
         <executions>
           <execution>
@@ -217,9 +174,7 @@
           </execution>
         </executions>
       </plugin>
-
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
         <executions>
           <execution>
@@ -228,28 +183,23 @@
               <goal>copy-dependencies</goal>
             </goals>
             <configuration>
-              <excludeArtifactIds>
-                json4s-ast_${scala.binary.version},
+              <excludeArtifactIds>json4s-ast_${scala.binary.version},
                 json4s-core_${scala.binary.version},
                 json4s-jackson_${scala.binary.version},
                 json4s-scalap_${scala.binary.version},
                 scala-xml_${scala.binary.version},
                 paranamer,
-                scalap
-              </excludeArtifactIds>
+                scalap</excludeArtifactIds>
             </configuration>
           </execution>
         </executions>
       </plugin>
-
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
         <configuration>
           <outputDirectory>${project.build.directory}/jars</outputDirectory>
         </configuration>
       </plugin>
-
       <plugin>
         <groupId>org.scalatest</groupId>
         <artifactId>scalatest-maven-plugin</artifactId>
@@ -260,8 +210,6 @@
           </systemProperties>
         </configuration>
       </plugin>
-
     </plugins>
   </build>
-
 </project>

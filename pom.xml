@@ -1,39 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  ~ Licensed to the Apache Software Foundation (ASF) under one or more
-  ~ contributor license agreements.  See the NOTICE file distributed with
-  ~ this work for additional information regarding copyright ownership.
-  ~ The ASF licenses this file to You under the Apache License, Version 2.0
-  ~ (the "License"); you may not use this file except in compliance with
-  ~ the License.  You may obtain a copy of the License at
-  ~
-  ~    http://www.apache.org/licenses/LICENSE-2.0
-  ~
-  ~ Unless required by applicable law or agreed to in writing, software
-  ~ distributed under the License is distributed on an "AS IS" BASIS,
-  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  ~ See the License for the specific language governing permissions and
-  ~ limitations under the License.
--->
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
-
-  <groupId>org.apache.livy</groupId>
-  <artifactId>livy-main</artifactId>
-  <version>0.10.0-incubating-SNAPSHOT</version>
-  <packaging>pom</packaging>
-  <name>Livy Project Parent POM</name>
-  <description>Livy Project</description>
-  <url>http://livy.incubating.apache.org/</url>
-
   <parent>
     <groupId>org.apache</groupId>
     <artifactId>apache</artifactId>
     <version>18</version>
   </parent>
-
+  <groupId>io.teknek.org.apache.livy</groupId>
+  <artifactId>livy-main</artifactId>
+  <version>0.9.0-edgyrc1</version>
+  <packaging>pom</packaging>
+  <name>Livy Project Parent POM</name>
+  <description>Livy Project</description>
+  <url>http://livy.incubating.apache.org/</url>
   <licenses>
     <license>
       <name>The Apache Software License, Version 2.0</name>
@@ -41,130 +21,57 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
-
+  <developers>
+    <developer>
+      <name>Edward Guy Capriolo</name>
+      <email>edlinuxguru@gmail.com</email>
+      <organization>teknek.io</organization>
+      <organizationUrl>https://github.com/edwardcapriolo</organizationUrl>
+    </developer>
+  </developers>
+  <modules>
+    <module>api</module>
+    <module>assembly</module>
+    <module>client-common</module>
+    <module>client-http</module>
+    <module>core</module>
+    <module>core/scala-${scala.binary.version}</module>
+    <module>examples</module>
+    <module>repl</module>
+    <module>repl/scala-${scala.binary.version}</module>
+    <module>rsc</module>
+    <module>scala</module>
+    <module>scala-api</module>
+    <module>scala-api/scala-${scala.binary.version}</module>
+    <module>server</module>
+    <module>test-lib</module>
+    <module>integration-test</module>
+  </modules>
   <scm>
-    <connection>scm:git:git@github.com:apache/incubator-livy.git</connection>
-    <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/incubator-livy.git</developerConnection>
-    <url>scm:git:git@github.com:apache/incubator-livy.git</url>
-    <tag>HEAD</tag>
+    <connection>scm:git:git@github.com:ecapriolo/incubator-livy.git</connection>
+    <developerConnection>scm:git:https://github.com/edwardcapriolo/incubator-livy.git</developerConnection>
+    <url>scm:git:git@github.com:ecapriolo/incubator-livy.git</url>
   </scm>
-
-  <issueManagement>
-    <system>JIRA</system>
-    <url>https://issues.apache.org/jira/browse/LIVY</url>
-  </issueManagement>
-
-  <mailingLists>
-    <mailingList>
-      <name>Dev Mailing List</name>
-      <post>dev@livy.incubating.apache.org</post>
-      <subscribe>dev-subscribe@livy.incubating.apache.org</subscribe>
-      <unsubscribe>dev-unsubscribe@livy.incubating.apache.org</unsubscribe>
-    </mailingList>
-
-    <mailingList>
-      <name>User Mailing List</name>
-      <post>user@livy.incubating.apache.org</post>
-      <subscribe>user-subscribe@livy.incubating.apache.org</subscribe>
-      <unsubscribe>user-unsubscribe@livy.incubating.apache.org</unsubscribe>
-    </mailingList>
-
-    <mailingList>
-      <name>Commits Mailing List</name>
-      <post>commits@livy.incubating.apache.org</post>
-      <subscribe>commits-subscribe@livy.incubating.apache.org</subscribe>
-      <unsubscribe>commits-unsubscribe@livy.incubating.apache.org</unsubscribe>
-    </mailingList>
-  </mailingLists>
-
   <properties>
-    <asynchttpclient.version>2.10.1</asynchttpclient.version>
-    <hadoop.scope>compile</hadoop.scope>
-    <slf4j.version>1.7.36</slf4j.version>
-    <reload4j.version>1.2.26</reload4j.version>
-    <spark.scala-2.12.version>3.3.4</spark.scala-2.12.version>
-    <spark.version>${spark.scala-2.12.version}</spark.version>
-    <kubernetes.client.version>5.6.0</kubernetes.client.version>
-    <hive.version>3.0.0</hive.version>
-    <commons-codec.version>1.15</commons-codec.version>
-    <commons-lang3.version>3.17.0</commons-lang3.version>
-    <httpclient.version>4.5.14</httpclient.version>
-    <httpcore.version>4.4.16</httpcore.version>
-    <jackson.version>2.12.7</jackson.version>
-    <jackson-databind.version>2.12.7.1</jackson-databind.version>
-    <jacoco.version>0.8.13</jacoco.version>
-    <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
-    <jetty.version>9.4.56.v20240826</jetty.version>
-    <junit.version>4.13.1</junit.version>
-    <libthrift.version>0.9.3</libthrift.version>
-    <kryo.version>4.0.2</kryo.version>
-    <metrics.version>3.1.0</metrics.version>
-    <mockito.version>1.10.19</mockito.version>
-    <netty.version>4.1.86.Final</netty.version>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <scalatest.version>3.0.8</scalatest.version>
-    <scalatra.version>2.6.5</scalatra.version>
-    <java.version>1.8</java.version>
-    <extraJavaTestArgs>
-      -XX:+IgnoreUnrecognizedVMOptions
-      --add-opens=java.base/java.lang.invoke=ALL-UNNAMED
-      --add-opens=java.base/java.lang=ALL-UNNAMED
-      --add-opens=java.base/java.nio=ALL-UNNAMED
-      --add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED
-      --add-opens=java.base/sun.nio.ch=ALL-UNNAMED
-      --add-opens=java.base/java.net=ALL-UNNAMED
-      --add-opens=java.base/java.io=ALL-UNNAMED
-      --add-opens=java.base/sun.util.calendar=ALL-UNNAMED
-      --add-exports=java.base/sun.net.dns=ALL-UNNAMED
-      --add-exports=java.base/sun.net.util=ALL-UNNAMED
-      --add-exports=java.base/sun.security.x509=ALL-UNNAMED
-      --add-exports=java.base/sun.security.util=ALL-UNNAMED
-    </extraJavaTestArgs>
-    <test.redirectToFile>true</test.redirectToFile>
-    <execution.root>${user.dir}</execution.root>
-    <spark.home>${execution.root}/dev/spark</spark.home>
-    <!-- profile controlled parameters, we are setting the defaults here so we can run "mvn package" with default profile values -->
-    <!-- hadoop2 -->
-    <hadoop.major-minor.version>2</hadoop.major-minor.version>
-    <hadoop.version>2.7.3</hadoop.version>
-    <scala.binary.version>2.12</scala.binary.version>
-    <scala.version>2.12.18</scala.version>
-    <java.version>1.8</java.version>
-    <py4j.version>0.10.9</py4j.version>
-    <json4s.version>3.5.3</json4s.version>
-    <spark.bin.name>spark-${spark.version}-bin-hadoop${hadoop.major-minor.version}</spark.bin.name>
-    <spark.bin.download.url>
-      https://archive.apache.org/dist/spark/spark-${spark.version}/${spark.bin.name}.tgz
-    </spark.bin.download.url>
-
-    <!--  used for testing, NCSARequestLog use it for access log  -->
-    <livy.log.dir>${basedir}/target</livy.log.dir>
-
-    <!-- Set this to "true" to skip R tests. -->
-    <skipRTests>false</skipRTests>
-
-    <!-- Set this to "true" to skip PySpark3 tests. -->
     <skipPySpark3Tests>false</skipPySpark3Tests>
-
-    <!-- Required for testing LDAP integration -->
-    <apacheds.version>2.0.0.AM26</apacheds.version>
-    <ldap-api.version>2.1.2</ldap-api.version>
-
-    <curator.version>2.7.1</curator.version>
+    <json4s.version>3.5.3</json4s.version>
+    <test.redirectToFile>true</test.redirectToFile>
+    <CodeCacheSize>512m</CodeCacheSize>
+    <jackson.version>2.12.7</jackson.version>
     <zookeeper.version>3.4.6</zookeeper.version>
-
-    <!--
-      Properties for the copyright header style checks. Modules that use the ASF header
-      should override the "copyright.header" property.
-    -->
-
-    <!--
-      Artifacts that should not be deployed to a maven repo should override the "skipDeploy"
-      property in their pom.
-    -->
-    <skipDeploy>false</skipDeploy>
-
-    <asf.copyright.header><![CDATA[/*
+    <MaxPermGen>512m</MaxPermGen>
+    <hadoop.version>2.7.3</hadoop.version>
+    <slf4j.version>1.7.36</slf4j.version>
+    <py4j.version>0.10.9</py4j.version>
+    <commons-lang3.version>3.17.0</commons-lang3.version>
+    <commons-codec.version>1.15</commons-codec.version>
+    <junit.version>4.13.1</junit.version>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <libthrift.version>0.9.3</libthrift.version>
+    <scalatra.version>2.6.5</scalatra.version>
+    <spark.scala-2.12.version>3.3.4</spark.scala-2.12.version>
+    <jacoco.version>0.8.13</jacoco.version>
+    <asf.copyright.header>/*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
@@ -179,167 +86,107 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */]]></asf.copyright.header>
-
-    <copyright.header>${asf.copyright.header}</copyright.header>
-
-    <MaxPermGen>512m</MaxPermGen>
-    <CodeCacheSize>512m</CodeCacheSize>
-
-    <maven.compiler.source>${java.version}</maven.compiler.source>
-    <maven.compiler.target>${java.version}</maven.compiler.target>
-
-    <!-- Exclude test and provided licenses when generating the THIRD-PARTY license file -->
+ */</asf.copyright.header>
+    <spark.bin.name>spark-${spark.version}-bin-hadoop${hadoop.major-minor.version}</spark.bin.name>
+    <spark.version>${spark.scala-2.12.version}</spark.version>
+    <asynchttpclient.version>2.10.1</asynchttpclient.version>
+    <hadoop.major-minor.version>2</hadoop.major-minor.version>
     <license.excludedScopes>test,provided</license.excludedScopes>
+    <scala.version>2.12.18</scala.version>
+    <skipDeploy>false</skipDeploy>
+    <curator.version>2.7.1</curator.version>
+    <scala.binary.version>2.12</scala.binary.version>
+    <reload4j.version>1.2.26</reload4j.version>
+    <livy.log.dir>${basedir}/target</livy.log.dir>
+    <kryo.version>4.0.2</kryo.version>
+    <netty.version>4.1.86.Final</netty.version>
+    <skipRTests>false</skipRTests>
+    <ldap-api.version>2.1.2</ldap-api.version>
+    <hadoop.scope>compile</hadoop.scope>
+    <spark.home>${execution.root}/dev/spark</spark.home>
+    <jetty.version>9.4.56.v20240826</jetty.version>
+    <httpclient.version>4.5.14</httpclient.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <execution.root>${user.dir}</execution.root>
+    <java.version>1.8</java.version>
+    <hive.version>3.0.0</hive.version>
+    <spark.bin.download.url>https://archive.apache.org/dist/spark/spark-${spark.version}/${spark.bin.name}.tgz</spark.bin.download.url>
+    <metrics.version>3.1.0</metrics.version>
+    <kubernetes.client.version>5.6.0</kubernetes.client.version>
+    <mockito.version>1.10.19</mockito.version>
+    <httpcore.version>4.4.16</httpcore.version>
+    <jackson-databind.version>2.12.7.1</jackson-databind.version>
+    <apacheds.version>2.0.0.AM26</apacheds.version>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+    <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
+    <scalatest.version>3.0.8</scalatest.version>
+    <copyright.header>${asf.copyright.header}</copyright.header>
+    <extraJavaTestArgs>-XX:+IgnoreUnrecognizedVMOptions
+      --add-opens=java.base/java.lang.invoke=ALL-UNNAMED
+      --add-opens=java.base/java.lang=ALL-UNNAMED
+      --add-opens=java.base/java.nio=ALL-UNNAMED
+      --add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED
+      --add-opens=java.base/sun.nio.ch=ALL-UNNAMED
+      --add-opens=java.base/java.net=ALL-UNNAMED
+      --add-opens=java.base/java.io=ALL-UNNAMED
+      --add-opens=java.base/sun.util.calendar=ALL-UNNAMED
+      --add-exports=java.base/sun.net.dns=ALL-UNNAMED
+      --add-exports=java.base/sun.net.util=ALL-UNNAMED
+      --add-exports=java.base/sun.security.x509=ALL-UNNAMED
+      --add-exports=java.base/sun.security.util=ALL-UNNAMED</extraJavaTestArgs>
   </properties>
-
-  <repositories>
-    <repository>
-      <id>central</id>
-      <!-- This should be at top, it makes maven try the central repo first and then others and hence faster dep resolution -->
-      <name>Maven Repository</name>
-      <url>https://repo1.maven.org/maven2</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
-    <repository>
-      <id>apache-repo</id>
-      <name>Apache Repository</name>
-      <url>https://repository.apache.org/content/repositories/releases</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
-  </repositories>
-
-  <modules>
-    <module>api</module>
-    <module>assembly</module>
-    <module>client-common</module>
-    <module>client-http</module>
-    <module>core</module>
-    <module>core/scala-${scala.binary.version}</module>
-    <module>coverage</module>
-    <module>examples</module>
-    <module>python-api</module>
-    <module>repl</module>
-    <module>repl/scala-${scala.binary.version}</module>
-    <module>rsc</module>
-    <module>scala</module>
-    <module>scala-api</module>
-    <module>scala-api/scala-${scala.binary.version}</module>
-    <module>server</module>
-    <module>test-lib</module>
-    <module>integration-test</module>
-  </modules>
-
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>${junit.version}</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-all</artifactId>
-      <version>${mockito.version}</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.scalatest</groupId>
-      <artifactId>scalatest_${scala.binary.version}</artifactId>
-      <version>${scalatest.version}</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.scalatra</groupId>
-      <artifactId>scalatra-scalatest_${scala.binary.version}</artifactId>
-      <version>${scalatra.version}</version>
-      <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>org.mockito</groupId>
-          <artifactId>*</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-
-  </dependencies>
-
   <dependencyManagement>
     <dependencies>
-
       <dependency>
         <groupId>ch.qos.reload4j</groupId>
         <artifactId>reload4j</artifactId>
         <version>${reload4j.version}</version>
       </dependency>
-
       <dependency>
         <groupId>com.esotericsoftware</groupId>
         <artifactId>kryo-shaded</artifactId>
         <version>${kryo.version}</version>
       </dependency>
-
       <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
         <artifactId>jackson-annotations</artifactId>
         <version>${jackson.version}</version>
       </dependency>
-
       <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
         <artifactId>jackson-core</artifactId>
         <version>${jackson.version}</version>
       </dependency>
-
       <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
         <artifactId>jackson-databind</artifactId>
         <version>${jackson-databind.version}</version>
       </dependency>
-
       <dependency>
         <groupId>com.fasterxml.jackson.module</groupId>
         <artifactId>jackson-module-scala_${scala.binary.version}</artifactId>
         <version>${jackson.version}</version>
       </dependency>
-
       <dependency>
         <groupId>commons-codec</groupId>
         <artifactId>commons-codec</artifactId>
         <version>${commons-codec.version}</version>
       </dependency>
-
       <dependency>
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-lang3</artifactId>
         <version>${commons-lang3.version}</version>
       </dependency>
-
       <dependency>
         <groupId>io.dropwizard.metrics</groupId>
         <artifactId>metrics-core</artifactId>
         <version>${metrics.version}</version>
       </dependency>
-
       <dependency>
         <groupId>io.dropwizard.metrics</groupId>
         <artifactId>metrics-healthchecks</artifactId>
         <version>${metrics.version}</version>
       </dependency>
-
       <dependency>
         <groupId>io.fabric8</groupId>
         <artifactId>kubernetes-client</artifactId>
@@ -351,19 +198,16 @@
           </exclusion>
         </exclusions>
       </dependency>
-
       <dependency>
         <groupId>io.netty</groupId>
         <artifactId>netty-all</artifactId>
         <version>${netty.version}</version>
       </dependency>
-
       <dependency>
         <groupId>javax.servlet</groupId>
         <artifactId>javax.servlet-api</artifactId>
         <version>${javax.servlet-api.version}</version>
       </dependency>
-
       <dependency>
         <groupId>org.apache.hadoop</groupId>
         <artifactId>hadoop-auth</artifactId>
@@ -379,7 +223,6 @@
           </exclusion>
         </exclusions>
       </dependency>
-
       <dependency>
         <groupId>org.apache.hadoop</groupId>
         <artifactId>hadoop-common</artifactId>
@@ -415,12 +258,11 @@
           </exclusion>
         </exclusions>
       </dependency>
-
       <dependency>
         <groupId>org.apache.hadoop</groupId>
         <artifactId>hadoop-common</artifactId>
-        <classifier>tests</classifier>
         <version>${hadoop.version}</version>
+        <classifier>tests</classifier>
         <exclusions>
           <exclusion>
             <groupId>log4j</groupId>
@@ -444,7 +286,6 @@
           </exclusion>
         </exclusions>
       </dependency>
-
       <dependency>
         <groupId>org.apache.hadoop</groupId>
         <artifactId>hadoop-client</artifactId>
@@ -484,7 +325,6 @@
           </exclusion>
         </exclusions>
       </dependency>
-
       <dependency>
         <groupId>org.apache.hadoop</groupId>
         <artifactId>hadoop-hdfs</artifactId>
@@ -496,12 +336,11 @@
           </exclusion>
         </exclusions>
       </dependency>
-
       <dependency>
         <groupId>org.apache.hadoop</groupId>
         <artifactId>hadoop-hdfs</artifactId>
-        <classifier>tests</classifier>
         <version>${hadoop.version}</version>
+        <classifier>tests</classifier>
         <exclusions>
           <exclusion>
             <groupId>log4j</groupId>
@@ -513,13 +352,11 @@
           </exclusion>
         </exclusions>
       </dependency>
-
       <dependency>
         <groupId>org.apache.hadoop</groupId>
         <artifactId>hadoop-yarn-api</artifactId>
         <version>${hadoop.version}</version>
       </dependency>
-
       <dependency>
         <groupId>org.apache.hadoop</groupId>
         <artifactId>hadoop-yarn-client</artifactId>
@@ -567,18 +404,16 @@
           </exclusion>
         </exclusions>
       </dependency>
-
       <dependency>
         <groupId>org.apache.hadoop</groupId>
         <artifactId>hadoop-yarn-common</artifactId>
         <version>${hadoop.version}</version>
       </dependency>
-
       <dependency>
         <groupId>org.apache.hadoop</groupId>
         <artifactId>hadoop-yarn-server-tests</artifactId>
-        <classifier>tests</classifier>
         <version>${hadoop.version}</version>
+        <classifier>tests</classifier>
         <exclusions>
           <exclusion>
             <groupId>log4j</groupId>
@@ -594,19 +429,16 @@
           </exclusion>
         </exclusions>
       </dependency>
-
       <dependency>
         <groupId>org.apache.httpcomponents</groupId>
         <artifactId>httpcore</artifactId>
         <version>${httpcore.version}</version>
       </dependency>
-
       <dependency>
         <groupId>org.apache.httpcomponents</groupId>
         <artifactId>httpclient</artifactId>
         <version>${httpclient.version}</version>
       </dependency>
-
       <dependency>
         <groupId>org.apache.spark</groupId>
         <artifactId>spark-core_${scala.binary.version}</artifactId>
@@ -658,7 +490,6 @@
           </exclusion>
         </exclusions>
       </dependency>
-
       <dependency>
         <groupId>org.apache.spark</groupId>
         <artifactId>spark-hive_${scala.binary.version}</artifactId>
@@ -670,7 +501,6 @@
           </exclusion>
         </exclusions>
       </dependency>
-
       <dependency>
         <groupId>org.apache.spark</groupId>
         <artifactId>spark-launcher_${scala.binary.version}</artifactId>
@@ -690,7 +520,6 @@
           </exclusion>
         </exclusions>
       </dependency>
-
       <dependency>
         <groupId>org.apache.spark</groupId>
         <artifactId>spark-repl_${scala.binary.version}</artifactId>
@@ -702,7 +531,6 @@
           </exclusion>
         </exclusions>
       </dependency>
-
       <dependency>
         <groupId>org.apache.spark</groupId>
         <artifactId>spark-sql_${scala.binary.version}</artifactId>
@@ -714,196 +542,218 @@
           </exclusion>
         </exclusions>
       </dependency>
-
       <dependency>
         <groupId>org.apache.spark</groupId>
         <artifactId>spark-streaming_${scala.binary.version}</artifactId>
         <version>${spark.version}</version>
         <scope>provided</scope>
       </dependency>
-
       <dependency>
         <groupId>org.apache.spark</groupId>
         <artifactId>spark-yarn_${scala.binary.version}</artifactId>
         <version>${spark.version}</version>
       </dependency>
-
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-http</artifactId>
         <version>${jetty.version}</version>
       </dependency>
-
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-continuation</artifactId>
         <version>${jetty.version}</version>
       </dependency>
-
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-servlet</artifactId>
         <version>${jetty.version}</version>
       </dependency>
-
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-server</artifactId>
         <version>${jetty.version}</version>
       </dependency>
-
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-util</artifactId>
         <version>${jetty.version}</version>
       </dependency>
-
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-plus</artifactId>
         <version>${jetty.version}</version>
       </dependency>
-
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-security</artifactId>
         <version>${jetty.version}</version>
       </dependency>
-
       <dependency>
         <groupId>org.json4s</groupId>
         <artifactId>json4s_${scala.binary.version}</artifactId>
         <version>${json4s.version}</version>
       </dependency>
-
       <dependency>
         <groupId>org.json4s</groupId>
         <artifactId>json4s-ast_${scala.binary.version}</artifactId>
         <version>${json4s.version}</version>
       </dependency>
-
       <dependency>
         <groupId>org.json4s</groupId>
         <artifactId>json4s-core_${scala.binary.version}</artifactId>
         <version>${json4s.version}</version>
       </dependency>
-
       <dependency>
         <groupId>org.json4s</groupId>
         <artifactId>json4s-jackson_${scala.binary.version}</artifactId>
         <version>${json4s.version}</version>
       </dependency>
-
       <dependency>
         <groupId>org.scala-lang</groupId>
         <artifactId>scala-compiler</artifactId>
         <version>${scala.version}</version>
       </dependency>
-
       <dependency>
         <groupId>org.scala-lang</groupId>
         <artifactId>scala-library</artifactId>
         <version>${scala.version}</version>
       </dependency>
-
       <dependency>
         <groupId>org.scala-lang</groupId>
         <artifactId>scala-reflect</artifactId>
         <version>${scala.version}</version>
       </dependency>
-
       <dependency>
         <groupId>org.scalatra</groupId>
         <artifactId>scalatra_${scala.binary.version}</artifactId>
         <version>${scalatra.version}</version>
       </dependency>
-
       <dependency>
         <groupId>org.scalatra</groupId>
         <artifactId>scalatra-jetty_${scala.binary.version}</artifactId>
         <version>${scalatra.version}</version>
       </dependency>
-
       <dependency>
         <groupId>org.scalatra</groupId>
         <artifactId>scalatra-json_${scala.binary.version}</artifactId>
         <version>${scalatra.version}</version>
       </dependency>
-
       <dependency>
         <groupId>org.scalatra</groupId>
         <artifactId>scalatra-metrics_${scala.binary.version}</artifactId>
         <version>${scalatra.version}</version>
       </dependency>
-
       <dependency>
         <groupId>org.scalatra</groupId>
         <artifactId>scalatra-test_${scala.binary.version}</artifactId>
         <version>${scalatra.version}</version>
       </dependency>
-
       <dependency>
         <groupId>net.sf.py4j</groupId>
         <artifactId>py4j</artifactId>
         <version>${py4j.version}</version>
       </dependency>
-
       <dependency>
         <groupId>org.asynchttpclient</groupId>
         <artifactId>async-http-client</artifactId>
         <version>${asynchttpclient.version}</version>
       </dependency>
-
       <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-reload4j</artifactId>
         <version>${slf4j.version}</version>
       </dependency>
-
     </dependencies>
   </dependencyManagement>
-
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-all</artifactId>
+      <version>${mockito.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.scalatest</groupId>
+      <artifactId>scalatest_${scala.binary.version}</artifactId>
+      <version>${scalatest.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.scalatra</groupId>
+      <artifactId>scalatra-scalatest_${scala.binary.version}</artifactId>
+      <version>${scalatra.version}</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.mockito</groupId>
+          <artifactId>*</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+  </dependencies>
+  <repositories>
+    <repository>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>central</id>
+      <name>Maven Repository</name>
+      <url>https://repo1.maven.org/maven2</url>
+    </repository>
+    <repository>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>apache-repo</id>
+      <name>Apache Repository</name>
+      <url>https://repository.apache.org/content/repositories/releases</url>
+    </repository>
+  </repositories>
   <build>
     <pluginManagement>
       <plugins>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.3</version>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-assembly-plugin</artifactId>
           <version>2.6</version>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-antrun-plugin</artifactId>
           <version>1.8</version>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jar-plugin</artifactId>
           <version>2.3.2</version>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-deploy-plugin</artifactId>
           <version>2.8.2</version>
         </plugin>
-
         <plugin>
           <groupId>org.apache.felix</groupId>
           <artifactId>maven-bundle-plugin</artifactId>
           <version>2.4.0</version>
         </plugin>
-
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>build-helper-maven-plugin</artifactId>
           <version>1.10</version>
         </plugin>
-
         <plugin>
           <groupId>net.alchim31.maven</groupId>
           <artifactId>scala-maven-plugin</artifactId>
@@ -913,6 +763,7 @@
               <goals>
                 <goal>compile</goal>
                 <goal>testCompile</goal>
+                <goal>doc-jar</goal>
               </goals>
             </execution>
             <execution>
@@ -924,6 +775,7 @@
             </execution>
           </executions>
           <configuration>
+             <failOnError>false</failOnError>
             <scalaVersion>${scala.version}</scalaVersion>
             <recompileMode>incremental</recompileMode>
             <checkMultipleScalaVersions>false</checkMultipleScalaVersions>
@@ -946,21 +798,15 @@
             </jvmArgs>
           </configuration>
         </plugin>
-
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-install-plugin</artifactId>
           <version>2.5.2</version>
         </plugin>
-
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-shade-plugin</artifactId>
           <version>3.5.0</version>
         </plugin>
-
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
           <version>2.22.1</version>
           <configuration>
@@ -985,11 +831,18 @@
             <failIfNoTests>false</failIfNoTests>
           </configuration>
         </plugin>
-
         <plugin>
           <groupId>org.scalatest</groupId>
           <artifactId>scalatest-maven-plugin</artifactId>
           <version>2.2.0</version>
+          <executions>
+            <execution>
+              <id>test</id>
+              <goals>
+                <goal>test</goal>
+              </goals>
+            </execution>
+          </executions>
           <configuration>
             <environmentVariables>
               <LIVY_TEST>true</LIVY_TEST>
@@ -1015,56 +868,72 @@
             <filereports>WDF TestSuite.txt</filereports>
             <argLine>${argLine} -Xmx2g ${extraJavaTestArgs}</argLine>
           </configuration>
-          <executions>
-            <execution>
-              <id>test</id>
-              <goals>
-                <goal>test</goal>
-              </goals>
-            </execution>
-          </executions>
         </plugin>
-
         <plugin>
           <groupId>org.apache.rat</groupId>
           <artifactId>apache-rat-plugin</artifactId>
           <version>0.12</version>
         </plugin>
-
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-remote-resources-plugin</artifactId>
           <version>1.5</version>
         </plugin>
-
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>license-maven-plugin</artifactId>
           <version>1.13</version>
         </plugin>
-
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-javadoc-plugin</artifactId>
-          <version>3.0.0-M1</version>
-          <configuration>
-            <doctitle>Livy ${project.version} Java API</doctitle>
-            <windowtitle>Livy ${project.version} JavaDoc</windowtitle>
-          </configuration>
-        </plugin>
-
         <plugin>
           <groupId>com.googlecode.maven-download-plugin</groupId>
           <artifactId>download-maven-plugin</artifactId>
           <version>1.3.0</version>
         </plugin>
-
+        <plugin>
+          <artifactId>maven-source-plugin</artifactId>
+          <version>3.2.1</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>jar</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <artifactId>maven-gpg-plugin</artifactId>
+          <executions>
+            <execution>
+              <id>sign-artifacts</id>
+              <goals>
+                <goal>sign</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>3.12.0</version>
+          <executions>
+            <execution>
+              <id>attach-javadocs</id>
+              <goals>
+                <goal>jar</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+		<failOnError>false</failOnError>
+                <!-- Optional: To ignore Javadoc lint warnings as errors in Java 8+ -->
+                <doclint>none</doclint> 
+            <additionalOptions>
+              <additionalOption>-Xdoclint:none</additionalOption>
+            </additionalOptions>
+          </configuration>
+        </plugin>
       </plugins>
     </pluginManagement>
-
     <plugins>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <executions>
           <execution>
@@ -1081,10 +950,16 @@
           <target>${java.version}</target>
         </configuration>
       </plugin>
-
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>validate</phase>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+          </execution>
+        </executions>
         <inherited>false</inherited>
         <configuration>
           <rules>
@@ -1096,22 +971,10 @@
             </requireMavenVersion>
           </rules>
         </configuration>
-        <executions>
-          <execution>
-            <id>default</id>
-            <goals>
-              <goal>enforce</goal>
-            </goals>
-            <phase>validate</phase>
-          </execution>
-        </executions>
       </plugin>
-
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-antrun-plugin</artifactId>
         <executions>
-          <!-- Cleans up files that tests append to (because we have two test plugins). -->
           <execution>
             <id>pre-test-clean</id>
             <phase>generate-test-resources</phase>
@@ -1121,12 +984,11 @@
             <configuration>
               <target>
                 <delete file="${project.build.directory}/unit-tests.log" quiet="true" />
-                <delete dir="${project.build.directory}/jacoco" quiet="true" />
-                <delete dir="${project.build.directory}/tmp" quiet="true" />
+                <delete quiet="true" dir="${project.build.directory}/jacoco" />
+                <delete quiet="true" dir="${project.build.directory}/tmp" />
               </target>
             </configuration>
           </execution>
-          <!-- Create the temp directory to be  used by tests. -->
           <execution>
             <id>create-tmp-dir</id>
             <phase>generate-test-resources</phase>
@@ -1139,10 +1001,6 @@
               </target>
             </configuration>
           </execution>
-          <!--
-            Copy the template scalastyle / checkstyle configuration and replace the copyright
-            header.
-          -->
           <execution>
             <id>setup-style-checker</id>
             <phase>verify</phase>
@@ -1151,29 +1009,28 @@
             </goals>
             <configuration>
               <target>
-                <echo message="execRoot: ${execution.root}, buildDir: ${project.build.directory}"/>
-                <copy file="${execution.root}/scalastyle.xml"
-                  tofile="${project.build.directory}/scalastyle.xml" />
-                <replace file="${project.build.directory}/scalastyle.xml"
-                  token="{{COPYRIGHT_HEADER}}"
-                  value="${copyright.header}" />
-                <copy file="${execution.root}/checkstyle.xml"
-                  tofile="${project.build.directory}/checkstyle.xml" />
-                <echo file="${project.build.directory}/checkstyle.header"
-                  message="${copyright.header}" />
-                <replace file="${project.build.directory}/checkstyle.xml"
-                  token="{{HEADER_FILE}}"
-                  value="${project.build.directory}/checkstyle.header" />
+                <echo message="execRoot: ${execution.root}, buildDir: ${project.build.directory}" />
+                <copy file="${execution.root}/scalastyle.xml" tofile="${project.build.directory}/scalastyle.xml" />
+                <replace file="${project.build.directory}/scalastyle.xml" value="${copyright.header}" token="{{COPYRIGHT_HEADER}}" />
+                <copy file="${execution.root}/checkstyle.xml" tofile="${project.build.directory}/checkstyle.xml" />
+                <echo file="${project.build.directory}/checkstyle.header" message="${copyright.header}" />
+                <replace file="${project.build.directory}/checkstyle.xml" value="${project.build.directory}/checkstyle.header" token="{{HEADER_FILE}}" />
               </target>
             </configuration>
           </execution>
         </executions>
       </plugin>
-
       <plugin>
         <groupId>org.scalastyle</groupId>
         <artifactId>scalastyle-maven-plugin</artifactId>
         <version>0.8.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
         <configuration>
           <verbose>false</verbose>
           <failOnViolation>true</failOnViolation>
@@ -1186,6 +1043,10 @@
           <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
           <outputEncoding>${project.reporting.outputEncoding}</outputEncoding>
         </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>2.17</version>
         <executions>
           <execution>
             <goals>
@@ -1193,12 +1054,6 @@
             </goals>
           </execution>
         </executions>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>2.17</version>
         <configuration>
           <failOnViolation>true</failOnViolation>
           <includeTestSourceDirectory>true</includeTestSourceDirectory>
@@ -1210,25 +1065,14 @@
           <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
           <outputEncoding>${project.reporting.outputEncoding}</outputEncoding>
         </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
-
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-deploy-plugin</artifactId>
         <configuration>
           <skip>${skipDeploy}</skip>
         </configuration>
       </plugin>
-
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
         <version>2.10</version>
         <configuration>
@@ -1240,12 +1084,9 @@
           <overWriteSnapshots>true</overWriteSnapshots>
         </configuration>
       </plugin>
-
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
       </plugin>
-
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
@@ -1262,26 +1103,7 @@
           </execution>
         </executions>
       </plugin>
-
       <plugin>
-        <groupId>org.apache.rat</groupId>
-        <artifactId>apache-rat-plugin</artifactId>
-        <configuration>
-          <excludesFile>${execution.root}/.rat-excludes</excludesFile>
-        </configuration>
-        <executions>
-          <execution>
-            <phase>verify</phase>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-
-      <!-- Override this plugin with parent POM to add DISCLAIMER file to artifacts. -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-remote-resources-plugin</artifactId>
         <executions>
           <execution>
@@ -1298,11 +1120,28 @@
           </execution>
         </executions>
       </plugin>
-
+      <plugin>
+        <groupId>org.sonatype.central</groupId>
+        <artifactId>central-publishing-maven-plugin</artifactId>
+        <version>0.9.0</version>
+        <extensions>true</extensions>
+        <configuration>
+          <publishingServerId>central</publishingServerId>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.12.0</version>
+      </plugin>
+      <plugin>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>3.2.1</version>
+      </plugin>
+      <plugin>
+        <artifactId>maven-gpg-plugin</artifactId>
+      </plugin>
     </plugins>
-
   </build>
-
   <reporting>
     <plugins>
       <plugin>
@@ -1311,7 +1150,6 @@
       </plugin>
     </plugins>
   </reporting>
-
   <profiles>
     <profile>
       <id>hadoop2</id>
@@ -1327,7 +1165,6 @@
         <scala.version>2.12.18</scala.version>
       </properties>
     </profile>
-
     <profile>
       <id>thriftserver</id>
       <modules>
@@ -1336,26 +1173,22 @@
         <module>thriftserver/client</module>
       </modules>
     </profile>
-
     <profile>
       <id>spark3</id>
       <properties>
+        <jackson-databind.version>2.15.2</jackson-databind.version>
+        <json4s.version>3.7.0-M11</json4s.version>
         <spark.version>3.5.6</spark.version>
+        <netty.version>4.1.96.Final</netty.version>
         <hadoop.major-minor.version>3</hadoop.major-minor.version>
-        <hadoop.version>3.3.4</hadoop.version>
         <java.version>1.8</java.version>
         <py4j.version>0.10.9.7</py4j.version>
-        <json4s.version>3.7.0-M11</json4s.version>
-        <netty.version>4.1.96.Final</netty.version>
+        <spark.bin.download.url>https://archive.apache.org/dist/spark/spark-${spark.version}/${spark.bin.name}.tgz</spark.bin.download.url>
         <jackson.version>2.15.2</jackson.version>
-        <jackson-databind.version>2.15.2</jackson-databind.version>
+        <hadoop.version>3.3.4</hadoop.version>
         <spark.bin.name>spark-${spark.version}-bin-hadoop${hadoop.major-minor.version}</spark.bin.name>
-        <spark.bin.download.url>
-          https://archive.apache.org/dist/spark/spark-${spark.version}/${spark.bin.name}.tgz
-        </spark.bin.download.url>
       </properties>
     </profile>
-
     <profile>
       <id>skip-parent-modules</id>
       <activation>
@@ -1376,10 +1209,7 @@
         </plugins>
       </build>
     </profile>
-
     <profile>
-      <!-- This will search remote and local repos to generate THIRD-PARTY license file, make sure
-      livy artifacts existed in either remote or local repos, otherwise run mvn install before. -->
       <id>generate-third-party</id>
       <activation>
         <property>
@@ -1391,6 +1221,14 @@
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>license-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <phase>prepare-package</phase>
+                <goals>
+                  <goal>aggregate-add-third-party</goal>
+                </goals>
+              </execution>
+            </executions>
             <inherited>false</inherited>
             <configuration>
               <outputDirectory>${execution.root}</outputDirectory>
@@ -1400,23 +1238,13 @@
               <useMissingFile>true</useMissingFile>
               <missingFile>${execution.root}/dev/third-party-missing-license.properties</missingFile>
               <licenseMerges>
-                  <licenseMerge>The Apache Software License, Version 2.0|Apache License, Version 2.0|The Apache License, Version 2.0|Apache 2|Apache 2.0 License|Apache License (v2.0)|Apache License 2.0|Apache Software License - Version 2.0|Apache v2|Apache-2.0</licenseMerge>
-                </licenseMerges>
-              <!-- <overrideFile>${execution.root}/dev/third-party-missing-override.properties</overrideFile> -->
+                <licenseMerge>The Apache Software License, Version 2.0|Apache License, Version 2.0|The Apache License, Version 2.0|Apache 2|Apache 2.0 License|Apache License (v2.0)|Apache License 2.0|Apache Software License - Version 2.0|Apache v2|Apache-2.0</licenseMerge>
+              </licenseMerges>
             </configuration>
-            <executions>
-              <execution>
-                <phase>prepare-package</phase>
-                <goals>
-                  <goal>aggregate-add-third-party</goal>
-                </goals>
-              </execution>
-            </executions>
           </plugin>
         </plugins>
       </build>
     </profile>
-
     <profile>
       <id>public-docs</id>
       <activation>
@@ -1427,7 +1255,6 @@
       <build>
         <plugins>
           <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
             <configuration>
               <failOnError>true</failOnError>
@@ -1437,7 +1264,5 @@
         </plugins>
       </build>
     </profile>
-
   </profiles>
-
 </project>
